@@ -205,10 +205,10 @@ class ActiveRecord::Base
       # Force the primary key col into the insert if it's not
       # on the list and we are using a sequence and stuff a nil
       # value for it into each row so the sequencer will fire later
-      if !column_names.include?(primary_key) && connection.prefetch_primary_key? && sequence_name
-         column_names << primary_key
-         array_of_attributes.each { |a| a << nil }
-      end
+      #if !column_names.include?(primary_key) && connection.prefetch_primary_key? && sequence_name
+      #   column_names << primary_key
+      #   array_of_attributes.each { |a| a << nil }
+      #end
 
       # record timestamps unless disabled in ActiveRecord::Base
       if record_timestamps && options.delete( :timestamps )
