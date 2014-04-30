@@ -179,6 +179,7 @@ class ActiveRecord::Base
         else
           models = args.first
           column_names = self.column_names.dup
+          column_names.delete('id')
         end
         
         array_of_attributes = models.map do |model|
