@@ -302,8 +302,12 @@ class ActiveRecord::Base
       if not supports_import?
         number_inserted = 0
         values_sql.each do |values|
-          connection.execute(insert_sql + values)
-          number_inserted += 1
+          begin
+            connection.execute(insert_sql + values)
+            number_inserted += 1
+          rescue => e
+            $stderr.puts "Error inserting:\n\tsql = #{insert_sql}\n\t#values = #{values}"
+          end
         end
       else
         # generate the sql
